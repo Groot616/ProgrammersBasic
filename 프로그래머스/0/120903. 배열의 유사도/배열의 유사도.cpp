@@ -1,20 +1,20 @@
 #include <string>
 #include <vector>
+#include <set>
 
 using namespace std;
 
 int solution(vector<string> s1, vector<string> s2) {
     int answer = 0;
-    
-    for(int i=0; i<s1.size(); ++i)
+    set<string> s3(s1.begin(), s1.end());
+    for(int i = 0; i < s2.size(); i ++)
     {
-        for(int j=0; j<s2.size(); ++j)
+        if(s3.find(s2[i])!=s3.end())
         {
-            if(s1[i] == s2[j])
-                answer += 1;
+            answer++;
         }
     }
-    
-    
+
+
     return answer;
 }
