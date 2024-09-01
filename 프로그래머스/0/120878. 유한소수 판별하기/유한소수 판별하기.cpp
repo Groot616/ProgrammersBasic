@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 최대공약수 구할 필요가 없는 이유 : 어차피 분모가 2와 5로 이뤄진 소인수인 경우 무조건 유한소수가 되기 때문
 int getGCD(int a, int b)
 {
     if (b == 0) return a;
