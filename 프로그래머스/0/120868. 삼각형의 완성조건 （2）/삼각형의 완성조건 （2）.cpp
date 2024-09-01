@@ -9,10 +9,10 @@ int solution(vector<int> sides) {
     int answer = 0;
 
     /*
-     * 수학적 공식을 이용한 풀이
-     * if(sides[0] > sides[1])
+     * 수학적 공식을 이용한 풀이 // [|a - b| < c < a + b] 에서 c의 개수는 [2*min(a, b) - 1]
+     * if(sides[0] < sides[1])
      *     swap(sides[0], sides[1]);
-     * answer = sides[0] * (sides[0] - 1);
+     * answer = 2 * sides[1] - 1;
      */
     
     int max = *max_element(sides.begin(), sides.end());
