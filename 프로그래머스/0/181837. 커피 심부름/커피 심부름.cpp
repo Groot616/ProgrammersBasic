@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <map>
 
 using namespace std;
 
@@ -9,19 +8,10 @@ int solution(vector<string> order) {
     
     for(const auto& e : order)
     {
-        if(e == "iceamericano" || e == "americanoice" || e == "hotamericano" || e == "americanohot" || e == "americano" || e == "anything")
-        {
-            answer += 4500;
-        }
+        if(e.find("cafelatte") != string::npos)
+            answer += 5000;
         else
-        {
-            //case "icecafelatte":
-            //case "cafelatteice":
-            //case "hotcafelatte":
-            //case "cafelattehot":
-            //case "cafelatte":
-                answer += 5000;
-        }
+            answer += 4500;
     }
     
     return answer;
