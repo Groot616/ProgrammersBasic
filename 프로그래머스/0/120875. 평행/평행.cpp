@@ -17,19 +17,9 @@ int solution(vector<vector<int>> dots) {
     gradient[0][1] = abs(1.0 * dots[2][0] - dots[3][0]) / (1.0 * dots[2][1] - dots[3][1]);
     gradient[1][0] = abs(1.0 * dots[0][0] - dots[2][0]) / (1.0 * dots[0][1] - dots[2][1]);
     gradient[1][1] = abs(1.0 * dots[1][0] - dots[3][0]) / (dots[1][1] - dots[3][1]);
-    //cout << dots[0][0] << " - " << dots[2][0] << " = " << dots[0][0] - dots[2][0] << endl;
-    //cout << dots[0][1] << " - " << dots[2][1] << " = " << dots[0][1] - dots[2][1] << endl;
     cout << -2.0 / -4.0 << endl;
     gradient[2][0] = abs(1.0 * dots[0][0] - dots[3][0]) / (dots[0][1] - dots[3][1]);
     gradient[2][1] = abs(1.0 * dots[1][0] - dots[2][0]) / (dots[1][1] - dots[2][1]);
-    
-    /** 디버깅용 */
-    for(int i=0; i<gradient.size(); ++i)
-    {
-        for(int j=0; j<gradient[0].size(); ++j)
-            cout << gradient[i][j] << " ";
-        cout << endl;
-    }
     
     int cnt = 0;
     for(int i=0; i<3; ++i)
