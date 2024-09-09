@@ -8,7 +8,7 @@ int main(void) {
     
     int answer = 0;
     
-    for(int i=0; i<to_string(number).length() * 80; i++){
+    for(int i=0; number != 0; i++){
         answer += number % 100;
         number /= 100;
     }
