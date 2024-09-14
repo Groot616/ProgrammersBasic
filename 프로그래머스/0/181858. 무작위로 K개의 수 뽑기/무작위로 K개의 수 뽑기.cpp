@@ -39,5 +39,5 @@ vector<int> solution(vector<int> arr, int k) {
         for(int i=0; i<k; ++i)
             answer[i] = sorted_arrMap[i].first;
     
-    
-    return answer;}
+    return answer;
+}
