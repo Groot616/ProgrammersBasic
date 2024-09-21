@@ -5,12 +5,15 @@ using namespace std;
 
 int getHash(string str, int length)
 {
-	int hashNum = 0;
+	unsigned long long hashNum = 0;
+	unsigned long long r = 1;
+	unsigned long long m = 1234567891;
 	for (int i = 0; i < length; ++i)
 	{
-		hashNum = hashNum + (int)pow(31, i) * (str[i] - 96);
+		hashNum += (((unsigned long long)str[i] - 96) * r) % m;
+		r = (r * 31) % m;
 	}
-	return hashNum;
+	return hashNum % m;
 }
 
 int main()
