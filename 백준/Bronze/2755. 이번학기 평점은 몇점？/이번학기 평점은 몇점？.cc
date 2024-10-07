@@ -51,18 +51,6 @@ int main()
 		totalCredit += stof(credit);
 	}
 	float answer = round(average / totalCredit * 100.f) / 100.f;
-	
-	/*string strAnswer = to_string(answer);
-	stringstream ss(strAnswer);
-	string word = "";
-	vector<string> tmp;
-	while (getline(ss, word, '.'))
-		tmp.push_back(word);
-	if (tmp[1].length() == 1)
-	{
-		tmp[1] += "0";
-		cout << tmp[0] << "." << tmp[1] << '\n';
-	}*/
 	cout << fixed << setprecision(2) << answer << '\n';
 
 	return 0;
