@@ -13,9 +13,6 @@ bool compare(pair<pair<int, int>, int>& a, pair<pair<int, int>, int>& b)
 		return a.first.second > b.first.second;
 	// 그렇지 않을 경우 몸무게 순으로 정렬
 	else return a.first.first > b.first.first;
-	//// 키가 크고 몸무게가 작거나, 크가 작고 몸무게가 큰 경우 키가 큰 순으로 정렬
-	//else if ((a.first.first > b.first.first && a.first.second < b.first.second) || (a.first.first < b.first.first && a.first.second > b.first.second))
-	//	return a.first.second > b.first.second;
 }
 
 void insertInfo(vector<pair<pair<int, int>, int>> &info, int i)
