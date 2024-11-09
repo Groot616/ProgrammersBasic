@@ -1,46 +1,39 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
 
-void makeStr(string & IOI, const int n)
-{
-	for (int i = 0; i < 2 * n + 1; ++i)
-	{
-		if (i % 2 == 0)
-			IOI += "I";
-		else
-			IOI += "O";
-	}
-}
-
 int main()
 {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	
-	int answer = 0;
-	int n, s;
-	string myStr;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
-	cin >> n;
-	cin >> s;
-	cin >> myStr;
+    int answer = 0;
+    int n, s;
+    string text;
 
-	string IOI = "";
-	makeStr(IOI, n);
-	while (true)
-	{
-		auto it = myStr.find(IOI);
-		if (it == string::npos)
-			break;
-		else
-		{
-			++answer;
-			myStr.erase(myStr.begin(), myStr.begin() + it + 2);
-		}
-	}
-	cout << answer << '\n';
+    cin >> n;
+    cin >> s;
+    cin >> text;
 
-	return 0;
+    for (int i = 0; i < s; ++i)
+    {
+        int check = 0;
+        if (text[i] != 'O')
+        {
+            while (text[i + 1] == 'O' && text[i + 2] == 'I')
+            {
+                ++check;
+                if (check == n)
+                {
+                    --check;
+                    ++answer;
+                }
+                i += 2;
+            }
+            check = 0;
+        }
+    }
+    cout << answer << '\n';
+
+    return 0;
 }
