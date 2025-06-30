@@ -1,13 +1,14 @@
+using System;
+using System.Linq;
+
 public class Solution {
     public double solution(int[] arr) {
         double answer = 0;
         
-        double length = arr.Length;
-        double sum = 0;
+        int length = arr.Length;
+        int sum = arr.Sum();
         
-        for(int i = 0; i < arr.Length; ++i)
-            sum += arr[i];
-        answer = sum / length;
+        answer = (double)sum / length;
         
         return answer;
     }
