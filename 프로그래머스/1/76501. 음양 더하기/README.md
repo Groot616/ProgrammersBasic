@@ -1,10 +1,10 @@
 # [level 1] 음양 더하기 - 76501 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/76501) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/76501?language=csharp) 
 
 ### 성능 요약
 
-메모리: 4.21 MB, 시간: 0.01 ms
+메모리: 31.4 MB, 시간: 0.25 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 09월 10일 18:58:00
+2025년 06월 30일 17:12:01
 
 ### 문제 설명
 
