@@ -7,33 +7,42 @@ using namespace std;
 string solution(vector<string> cards1, vector<string> cards2, vector<string> goal) {
     string answer = "";
     
-    queue<string> card1;
-    queue<string> card2;
-    for(const auto e : cards1)
-        card1.push(e);
-    for(const auto e : cards2)
-        card2.push(e);
+    queue<string> qCards1;
+    queue<string> qCards2;
+    queue<string> qGoal;
+    for(const auto& e : cards1)
+        qCards1.push(e);
+    for(const auto& e : cards2)
+        qCards2.push(e);
+    for(const auto& e : goal)
+        qGoal.push(e);
     
-    bool bCanMake = false;
+    bool bFlag = true;
     for(int i = 0; i < goal.size(); ++i)
     {
-        if(card1.front() == goal[i])
+        string tmp1 = qCards1.front();
+        string tmp2 = qCards2.front();
+        string tmp3 = qGoal.front();
+        if(tmp1 == tmp3)
         {
-            bCanMake = true;
-            card1.pop();
+            qCards1.pop();
+            qGoal.pop();
         }
-        else if(card2.front() == goal[i])
+        else if(tmp2 == tmp3)
         {
-            bCanMake = true;
-            card2.pop();
+            qCards2.pop();
+            qGoal.pop();
         }
         else
         {
-            bCanMake = false;
+            bFlag = false;
             break;
-        }   
+        }
     }
-    bCanMake ? answer = "Yes" : answer = "No";
+    if(bFlag)
+        answer = "Yes";
+    else
+        answer = "No";
     
     return answer;
 }
