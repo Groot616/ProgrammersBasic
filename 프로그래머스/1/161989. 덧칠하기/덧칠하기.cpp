@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <iostream>
 
 using namespace std;
 
@@ -11,28 +10,15 @@ int solution(int n, int m, vector<int> section) {
         answer = section.size();
     else
     {
-        while(true)
+        int painted = section[0] + m - 1;
+        answer += 1;
+        for(int i = 1; i < section.size(); ++i)
         {
-            if(section.size() == 0)
-                break;
-            
-            int maxWidth = section[0] + m - 1;
-            bool bFind = false;
-            while(true)
+            if(section[i] > painted)
             {
-                if(section.size() == 0)
-                    break;
-                
-                if(section[0] <= maxWidth)
-                {
-                    bFind = true;
-                    section.erase(section.begin());
-                }
-                else
-                    break;
+                painted = section[i] + m - 1;
+                answer += 1;
             }
-            if(bFind)
-                ++answer;
         }
     }
     
