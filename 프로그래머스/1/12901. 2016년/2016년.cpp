@@ -1,63 +1,46 @@
 #include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
-int getTotalDay(int month)
-{
-    int day = 0;
-    switch(month)
-    {
-        case 1: day = 31; break;
-        case 2: day = 29; break;
-        case 3: day = 31; break;
-        case 4: day = 30; break;
-        case 5: day = 31; break;
-        case 6: day = 30; break;
-        case 7:
-        case 8: day = 31; break;
-        case 9: day = 30; break;
-        case 10: day = 31; break;
-        case 11: day = 30; break;
-        case 12: day = 31; break;
-        default: break;
-    }
-    return day;
-}
-
-string getDay(int totalDay)
-{
-    string retStr = "";
-    switch(totalDay)
-    {
-        case 0: retStr = "FRI"; break;
-        case 1: retStr = "SAT"; break;
-        case 2: retStr = "SUN"; break;
-        case 3: retStr = "MON"; break;
-        case 4: retStr = "TUE"; break;
-        case 5: retStr = "WED"; break;
-        case 6: retStr = "THU"; break;
-        default: break;
-    }
-    return retStr;
-}
+const vector<vector<int>> dayPerMonth = {{1, 31}, {2, 29}, {3, 31}, {4, 30}, {5, 31}, {6, 30}, {7, 31}, {8, 31}, {9, 30}, {10, 31}, {11, 30}, {12, 31}};
 
 string solution(int a, int b) {
     string answer = "";
     
     int totalDay = 0;
-    if(a == 1)
+    totalDay += b;
+    for(int i = 0; i < a - 1; ++i)
+        totalDay += dayPerMonth[i][1];
+    
+    int lastDay = totalDay % 7;
+    switch(lastDay)
     {
-        totalDay = (b - 1) % 7;
-        answer = getDay(totalDay);
-    }
-    else
-    {
-        for(int i = 1; i < a; ++i)
-            totalDay += getTotalDay(i);
-        totalDay += b - 1;
-        totalDay %= 7;
-        answer = getDay(totalDay);
+        case 0:
+            answer = "THU";
+            break;
+        case 1:
+            answer = "FRI";
+            break;
+        case 2:
+            answer = "SAT";
+            break;
+        case 3:
+            answer = "SUN";
+            break;
+        case 4:
+            answer = "MON";
+            break;
+        case 5:
+            answer = "TUE";
+            break;
+        case 6:
+            answer = "WED";
+            break;
+        default:
+            answer = "ERROR";
+            break;
     }
     
     return answer;
