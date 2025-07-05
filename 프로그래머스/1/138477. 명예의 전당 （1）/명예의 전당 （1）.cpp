@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <map>
 #include <algorithm>
 
 using namespace std;
@@ -8,32 +7,21 @@ using namespace std;
 vector<int> solution(int k, vector<int> score) {
     vector<int> answer;
     
-    vector<int> rank;
-    
-    for(int i=0; i<score.size(); ++i)
+    vector<int> greatest;
+    for(int i = 0; i < score.size(); ++i)
     {
-        if(i < k)
+        // 명예의 전당에 할당된 idx가 k 미만일 경우
+        if(greatest.size() < k)
         {
-            rank.push_back(score[i]);
-            sort(rank.begin(), rank.end());
-            answer.push_back(rank[0]);
+            greatest.push_back(score[i]);
+            answer.push_back(*min_element(greatest.begin(), greatest.end()));
         }
         else
         {
-            if(score[i] >= rank[rank.size() - 1])
-            {
-                rank[0] = score[i];
-                sort(rank.begin(), rank.end());
-                answer.push_back(rank[0]);
-            }
-            else if(score[i] < rank[rank.size() - 1] && score[i] >= rank[0])
-            {
-                rank[0] = score[i];
-                sort(rank.begin(), rank.end());
-                answer.push_back(rank[0]);
-            }
-            else
-                answer.push_back(rank[0]);
+            greatest.push_back(score[i]);
+            auto it = min_element(greatest.begin(), greatest.end());
+            greatest.erase(it);
+            answer.push_back(*min_element(greatest.begin(), greatest.end()));
         }
     }
     
