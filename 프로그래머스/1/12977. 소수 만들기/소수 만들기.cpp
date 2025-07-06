@@ -1,39 +1,44 @@
 #include <vector>
+#include <algorithm>
 #include <iostream>
-#include <numeric>
 
 using namespace std;
+
+void makePrimeNum(vector<bool>& primeNum, const int& maxElement)
+{
+    primeNum.resize(maxElement, true);
+    primeNum[0] = primeNum[1] = false;
+    for(int i = 2; i * i <= maxElement; ++i)
+    {
+        if(primeNum[i])
+        {
+            for(int j = i * i; j <= maxElement; j += i)
+                primeNum[j] = false;
+        }
+    }
+}
 
 int solution(vector<int> nums) {
     int answer = 0;
 
-    int totalSum = accumulate(nums.begin(), nums.end(), 0);
-    vector<bool> primeNum(totalSum + 1, true);
-    primeNum[0] = primeNum[1] = false;
+    int maxNum = *max_element(nums.begin(), nums.end());
+    vector<bool> primeNum;
+    makePrimeNum(primeNum, 3 * maxNum);
     
-    for(int i=2; i<=totalSum; ++i)
+    vector<int> selector(nums.size(), 0);
+    fill(selector.end() - 3, selector.end(), 1);
+    do
     {
-        if(primeNum[i] == true)
+        int sum = 0;
+        for(int i = 0; i < nums.size(); ++i)
         {
-            for(int j=i*i; j<=totalSum; j += i)
-                primeNum[j] = false;
+            if(selector[i] == 1)
+                sum += nums[i];
         }
-    }
+        cout << sum << endl;
+        if(primeNum[sum])
+            ++answer;
+    } while(next_permutation(selector.begin(), selector.end()));
     
-    for(int i=0; i<nums.size()-2; ++i)
-    {
-        for(int j=i+1; j<nums.size()-1; ++j)
-        {
-            for(int k=j+1; k<nums.size(); ++k)
-            {
-                if(primeNum[nums[i] + nums[j] + nums[k]] == true)
-                    ++answer;
-            }
-        }
-    }
-    
-    // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
-    cout << "Hello Cpp" << endl;
-
     return answer;
 }
