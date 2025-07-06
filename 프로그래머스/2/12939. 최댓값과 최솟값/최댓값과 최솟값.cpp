@@ -8,13 +8,13 @@ using namespace std;
 string solution(string s) {
     string answer = "";
     
-    stringstream ss(s);
+    stringstream letter(s);
     vector<int> nums;
-    string num;
-    while(getline(ss, num, ' '))
-        nums.push_back(stoi(num));
+    int num;
+    while(letter >> num)
+        nums.push_back(num);
     
-    sort(nums.begin(), nums.end());
+    sort(nums.begin(), nums.end()); 
     answer = to_string(nums[0]) + " " + to_string(nums[nums.size() - 1]);
     
     return answer;
