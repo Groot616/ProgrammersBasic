@@ -1,57 +1,51 @@
 #include <string>
 #include <vector>
-#include <stack>
-#include <unordered_set>
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
 
-string changeBin(int num)
+int eraseZero(string& str, int& length)
 {
-    string retStr = "";
-    stack<int> st;
-    
-    while(num != 0)
+    int retVal = 0;
+    for(int i = 0; i < str.length(); ++i)
     {
-        st.push(num % 2);
-        num /= 2;
+        if(str[i] == '0')
+            ++retVal;
     }
+    length -= retVal;
     
-    while(!st.empty())
+    return retVal;
+}
+
+void lengthToBinary(string& str, int length)
+{
+    string s = "";
+    while(length != 0)
     {
-        retStr += to_string(st.top());
-        st.pop();
+        s += to_string(length % 2);
+        length /= 2;
     }
-    return retStr;
+    reverse(s.begin(), s.end());
+    str = s;
 }
 
 vector<int> solution(string s) {
     vector<int> answer;
     
     int cnt = 0;
-    int deleted = 0;
+    int zeroCnt = 0;
+    int length = s.length();
     
-    while(true)
+    while(length != 1)
     {
-        int oneCnt = 0;
-        for(int i = 0; i < s.length(); ++i)
-        {
-            if(s[i] == '1')
-                ++oneCnt;
-            else
-                ++deleted;
-        }
-        
-        if(s.length() == 1)
-            break;
-        else
-        {
-            s = changeBin(oneCnt);
-            ++cnt;
-        }
+        zeroCnt += eraseZero(s, length);
+        lengthToBinary(s, length);
+        length = s.length();
+        ++cnt;
     }
     answer.push_back(cnt);
-    answer.push_back(deleted);
+    answer.push_back(zeroCnt);
     
     return answer;
 }
