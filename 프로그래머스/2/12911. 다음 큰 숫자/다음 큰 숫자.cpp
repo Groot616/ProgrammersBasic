@@ -1,51 +1,41 @@
 #include <string>
 #include <vector>
-#include <stack>
+#include <queue>
+#include <algorithm>
 
 using namespace std;
 
-string changeBin(int num)
+string changeBinary(int n)
 {
-    string binStr = "";
-    stack<int> st;
-    while(num != 0)
+    string retStr = "";
+    queue<int> q;
+    while(n != 0)
     {
-        st.push(num % 2);
-        num /= 2;
+        q.push(n % 2);
+        n /= 2;
     }
-    while(!st.empty())
+    while(!q.empty())
     {
-        binStr += to_string(st.top());
-        st.pop();
+        retStr += q.front() + '0';
+        q.pop();
     }
-    return binStr;
-}
-
-int getOneCnt(string binStr)
-{
-    int retVal = 0;
-    for(int i = 0; i < binStr.length(); ++i)
-    {
-        if(binStr[i] == '1')
-            ++retVal;
-    }
-    return retVal;
-}
+    return retStr;
+}    
 
 int solution(int n) {
     int answer = 0;
     
-    int nOneCnt = 0;
-    string nStr = changeBin(n);
-    nOneCnt = getOneCnt(nStr);
+    string binary = changeBinary(n);
+    int cntOne = count(binary.begin(), binary.end(), '1');
     
+    int newCntOne = 0;
     while(true)
     {
-        ++n;
-        string nextNumStr = changeBin(n);
-        if(nOneCnt == getOneCnt(nextNumStr))
+        n += 1;
+        binary = changeBinary(n);
+        newCntOne = count(binary.begin(), binary.end(), '1');
+        if(cntOne == newCntOne)
             break;
-        
     }
     answer = n;
     
